@@ -12,6 +12,7 @@
 #include "GPIO.h"
 #include "Ultrasonic.h"
 #include "UART.h"
+#include "ADXL345.h"
 //*****************************************************************************
 //		GLOBAL DATA VARIABLES
 //*****************************************************************************
@@ -39,8 +40,19 @@ int main(void)
 
 		GPIO_Initialize();
 
+		//
+		// Initialize the UART.
+		//
+		UART_Initialize();
+
+		ADXL345_Init();
+		//////End of Init ADXL345
+
+		//Get ready to read ADXL345
+
 	while(1)
 	{
+		ADXL345_Read();
 		LED_ChangeColor(LED_BLUE);
 		DelayMS(1);
 		LED_ChangeColor(LED_RED);
