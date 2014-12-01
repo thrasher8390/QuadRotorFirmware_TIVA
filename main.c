@@ -12,7 +12,7 @@
 #include "GPIO.h"
 #include "Ultrasonic.h"
 #include "UART.h"
-#include "ADXL345.h"
+#include "Sensors.h"
 //*****************************************************************************
 //		GLOBAL DATA VARIABLES
 //*****************************************************************************
@@ -45,18 +45,18 @@ int main(void)
 		//
 		UART_Initialize();
 
-		ADXL345_Init();
+		Sensors_Init();
+
 		//////End of Init ADXL345
 
 		//Get ready to read ADXL345
 
 	while(1)
 	{
-		ADXL345_Read();
-		LED_ChangeColor(LED_BLUE);
-		DelayMS(1);
-		LED_ChangeColor(LED_RED);
-		DelayMS(1);
+		//This should be in main and run periodically
+		Sensors_Run();
+		LED_ChangeColor(LED_GREEN);
+		DelayMS(1500);
 	}
 
 }
