@@ -56,7 +56,7 @@ int main(void)
 		//This should be in main and run periodically
 		Sensors_Run();
 		LED_ChangeColor(LED_GREEN);
-		DelayMS(1500);
+		DelayMS(100);
 	}
 
 }
