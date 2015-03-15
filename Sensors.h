@@ -20,7 +20,7 @@
 //*****************************************************************************
 //		Global Functions
 //*****************************************************************************
-extern void Sensors_Init();
+extern void Sensors_Initialize();
 extern void Sensors_Run();
 
 #endif /* SENSORS_H_ */
