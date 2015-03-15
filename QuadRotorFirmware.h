@@ -46,6 +46,7 @@ typedef enum
 //*****************************************************************************
 //		Global Defines
 //*****************************************************************************
+#define SYSTEM_CLOCK_FREQUENCY (16000000)
 #define CLEAR	(0)
 #define SET		(1)
 #endif /* QUADROTORFIRMWARE_H_ */

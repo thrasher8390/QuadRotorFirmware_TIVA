@@ -19,17 +19,16 @@
 //*****************************************************************************
 //		Global Functions
 //*****************************************************************************
-void Sensors_Init()
+void Sensors_Initialize()
 {
-	//ADXL345_Init();
-	Gyro_Init();
+	ADXL345_Init();
+	//Gyro_Init();
 }
 
 void Sensors_Run()
 {
-	//ADXL345_Read();
-	LED_ChangeColor(LED_RED);
-	Gyro_Read();
+	ADXL345_Read();
+	//Gyro_Read();
 }
 //*****************************************************************************
 //		Local Functions
