@@ -44,7 +44,7 @@ int main(void)
 		GPIO_Initialize();
 		HC05_Initialize();
 		Sensors_Initialize();
-
+		Timers_Initialize();
       IntMasterEnable();
 
 		//////End of Init ADXL345
@@ -52,11 +52,7 @@ int main(void)
 		//Get ready to read ADXL345
 	while(1)
 	{
-		//This should be in a timer interrupt
-		Sensors_Run();
 		Protocol__ReceivedCommand(HC05__GetCommand());
-		LED_ChangeColor(LED_GREEN);
-		//UART_Send((uint8_t *)"3F", 2);
 	}
 
 }

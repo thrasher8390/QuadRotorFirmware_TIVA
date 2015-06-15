@@ -58,6 +58,7 @@ extern uint32_t __STACK_TOP;
 //*****************************************************************************
 extern void IntGPIOd(void);
 extern void HC05__RxInterrupt(void);
+extern void Timers_Timer0Interrupt(void);    //Timers.c
 
 //*****************************************************************************
 //
@@ -89,7 +90,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // GPIO Port A
     IntDefaultHandler,                      // GPIO Port B
     IntDefaultHandler,                      // GPIO Port C
-    IntGPIOd,		                        // GPIO Port D
+    IntGPIOd,		                          // GPIO Port D
     IntDefaultHandler,                      // GPIO Port E
     IntDefaultHandler,                      // UART0 Rx and Tx
     IntDefaultHandler,                      // UART1 Rx and Tx
@@ -105,7 +106,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // ADC Sequence 2
     IntDefaultHandler,                      // ADC Sequence 3
     IntDefaultHandler,                      // Watchdog timer
-    IntDefaultHandler,                      // Timer 0 subtimer A
+    Timers_Timer0Interrupt,                 // Timer 0 subtimer A
     IntDefaultHandler,                      // Timer 0 subtimer B
     IntDefaultHandler,                      // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B
