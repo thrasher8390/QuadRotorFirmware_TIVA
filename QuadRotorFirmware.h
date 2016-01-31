@@ -29,6 +29,7 @@
 #include "driverlib/uart.h"
 #include "utils/uartstdio.h"
 #include "driverlib/timer.h"
+#include "driverlib/pwm.h"
 
 
 //*****************************************************************************
