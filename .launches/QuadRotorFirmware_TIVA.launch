@@ -5,6 +5,7 @@
 <setAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_HIDE_CONFIG_ELEMENT_TYPES">
 <setEntry value="BOARD"/>
 <setEntry value="BYPASSED_CPU"/>
+<setEntry value="BYPASSED_ROUTER"/>
 <setEntry value="CONNECTION"/>
 <setEntry value="DEVICE"/>
 <setEntry value="NON_DEBUG_CPU"/>
@@ -16,6 +17,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="${build_artifact:QuadRotorFirmware_TIVA}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="QuadRotorFirmware_TIVA"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:QuadRotorFirmware_TIVA}"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="E:/Users\DLThrasher\Development\Projects Via Source Tree\TIVA\QuadRotorFirmware_TIVA\Debug\QuadRotorFirmware_TIVA.out"/>
 <mapAttribute key="com.ti.ccstudio.debug.ui.displayFormats">
 <mapEntry key="Stellaris In-Circuit Debug Interface/CORTEX_M4_0@##separator##@0" value="32-Bit Hex - TI Style"/>
 </mapAttribute>

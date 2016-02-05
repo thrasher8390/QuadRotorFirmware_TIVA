@@ -29,6 +29,7 @@
 #include "driverlib/uart.h"
 #include "utils/uartstdio.h"
 #include "driverlib/timer.h"
+#include "driverlib/pwm.h"
 
 
 //*****************************************************************************
@@ -46,7 +47,19 @@ typedef enum
 //*****************************************************************************
 //		Global Defines
 //*****************************************************************************
-#define SYSTEM_CLOCK_FREQUENCY (16000000)
+#define SYSTEM_CLOCK_FREQUENCY_HZ  (16000000)
+#define SYSTEM_CLOCK_FREQUENCY_MHZ (16)
 #define CLEAR	(0)
 #define SET		(1)
+
+//TYPE DEFS
+typedef uint32_t UINT32 ;
+typedef uint16_t UINT16 ;
+typedef uint8_t UINT8 ;
+
+//TESTPOINTS
+#define TESTPOINT_0_PORT   (GPIO_PORTD_BASE)
+#define TESTPOINT_0_PIN    (GPIO_PIN_6)
+#define SET_TESTPOINT_0()     (GPIOPinWrite(TESTPOINT_0_PORT, TESTPOINT_0_PIN, TESTPOINT_0_PIN))
+#define CLEAR_TESTPOINT_0()   (GPIOPinWrite(TESTPOINT_0_PORT, TESTPOINT_0_PIN, CLEAR))
 #endif /* QUADROTORFIRMWARE_H_ */

@@ -15,48 +15,49 @@
 #include "Sensors.h"
 #include "HC05.h"
 #include "Protocol.h"
+#include "Servo.h"
+#include "PWM.h"
 //*****************************************************************************
 //		GLOBAL DATA VARIABLES
 //*****************************************************************************
 int main(void)
 {
-	//
-		// Enable lazy stacking for interrupt handlers.  This allows floating-point
-		// instructions to be used within interrupt handlers, but at the expense of
-		// extra stack usage.
-		//
-		FPULazyStackingEnable();
+   //
+   // Enable lazy stacking for interrupt handlers.  This allows floating-point
+   // instructions to be used within interrupt handlers, but at the expense of
+   // extra stack usage.
+   //
+   FPULazyStackingEnable();
 
-		//
-		// Set the clocking to run directly from the crystal.
-		//
-		//EFFECTS SYSTEM_CLOCK_FREQUENCY
-		SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN| SYSCTL_XTAL_16MHZ);
+   //
+   // Set the clocking to run directly from the crystal.
+   //
+   //EFFECTS SYSTEM_CLOCK_FREQUENCY
+   //SYSCTL_PWMDIV_1 initializes PWM
+   SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
 
-		//
-		// Set up and enable the SysTick timer.  It will be used as a reference
-		// for delay loops in the interrupt handlers.  The SysTick timer period
-		// will be set up for one second.
-		//
-		SysTickPeriodSet(SysCtlClockGet());
-		SysTickEnable();
+   //
+   // Set up and enable the SysTick timer.  It will be used as a reference
+   // for delay loops in the interrupt handlers.  The SysTick timer period
+   // will be set up for one second.
+   //
+   SysTickPeriodSet(SysCtlClockGet());
+   SysTickEnable();
 
-		GPIO_Initialize();
-		HC05_Initialize();
-		Sensors_Initialize();
+   GPIO_Initialize();
+   HC05_Initialize();
+   Sensors_Initialize();
+   Timers_Initialize();
+   /* Init the servo control module */
+   ServoModule_Init();
 
-      IntMasterEnable();
+   IntMasterEnable();
 
-		//////End of Init ADXL345
+   //////End of Init ADXL345
 
-		//Get ready to read ADXL345
-	while(1)
-	{
-		//This should be in a timer interrupt
-		Sensors_Run();
-		Protocol__ReceivedCommand(HC05__GetCommand());
-		LED_ChangeColor(LED_GREEN);
-		//UART_Send((uint8_t *)"3F", 2);
-	}
-
+   //Get ready to read ADXL345
+   while(1)
+   {
+     Protocol__ReceivedCommand(HC05__GetCommand());
+   }
 }
