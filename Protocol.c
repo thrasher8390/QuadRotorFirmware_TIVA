@@ -8,6 +8,7 @@
 #include "Protocol.h"
 #include "LED.h"
 #include "HelperFunctions.h"
+#include "Servo.h"
 
 /*
 * \brief Process received Commands
@@ -23,31 +24,38 @@ void Protocol__ReceivedCommand(BLUETOOTH_CMD nextCommand)
          DelayMS(delay);
         break;
       }
+      case COMMAND_UP:
+      {
+         ServoModule_SetServoPower(1,ServoModule_GetServoPower(1) + 10);
+         LED_ChangeColor(LED_RED_GREEN);
+         break;
+      }
       case COMMAND_DOWN:
       {
          LED_ChangeColor(LED_BLUE);
-         Delay(1000);
-        break;
+         break;
       }
       case COMMAND_LEFT:
       {
-        break;
+         LED_ChangeColor(LED_GREEN);
+         break;
       }
       case COMMAND_RIGHT:
       {
-        break;
+         LED_ChangeColor(LED_GREEN_BLUE);
+         break;
       }
       case COMMAND_OFF:
       {
-        break;
+         break;
       }
       case COMMAND_ON:
       {
-        break;
+         break;
       }
       default:
       {
-        break;
+         break;
       }
     }
 }
