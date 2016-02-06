@@ -22,5 +22,5 @@
 //*****************************************************************************
 extern void Sensors_Initialize();
 extern void Sensors_Run();
-
+extern void Sensors__InterruptIRQ();
 #endif /* SENSORS_H_ */
