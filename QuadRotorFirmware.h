@@ -47,8 +47,10 @@ typedef enum
 //*****************************************************************************
 //		Global Defines
 //*****************************************************************************
-#define SYSTEM_CLOCK_FREQUENCY_HZ  (16000000)
-#define SYSTEM_CLOCK_FREQUENCY_MHZ (16)
+#define SYSTEM_CLOCK_FREQUENCY_HZ   (50000000)
+#define SYSTEM_CLOCK_FREQUENCY_MHZ  (SYSTEM_CLOCK_FREQUENCY_HZ/1000000)
+#define PLL_FREQUENCY_HZ            (200000000)
+#define PLL_FREQUENCY_MHZ           (200)
 #define CLEAR	(0)
 #define SET		(1)
 
@@ -62,8 +64,22 @@ typedef uint8_t UINT8 ;
 #define SENSORS_INT_PIN    (GPIO_PIN_6)
 
 //TESTPOINTS
-#define TESTPOINT_0_PORT   (GPIO_PORTD_BASE)
-#define TESTPOINT_0_PIN    (GPIO_PIN_5)
+
+#define TESTPOINT_0_PORT      (GPIO_PORTD_BASE)
+#define TESTPOINT_0_PIN       (GPIO_PIN_3)
 #define SET_TESTPOINT_0()     (GPIOPinWrite(TESTPOINT_0_PORT, TESTPOINT_0_PIN, TESTPOINT_0_PIN))
 #define CLEAR_TESTPOINT_0()   (GPIOPinWrite(TESTPOINT_0_PORT, TESTPOINT_0_PIN, CLEAR))
+
+#define TESTPOINT_1_PORT      (GPIO_PORTA_BASE)
+#define TESTPOINT_1_PIN       (GPIO_PIN_2)
+#define SET_TESTPOINT_1()     (GPIOPinWrite(TESTPOINT_1_PORT, TESTPOINT_1_PIN, TESTPOINT_1_PIN))
+#define CLEAR_TESTPOINT_1()   (GPIOPinWrite(TESTPOINT_1_PORT, TESTPOINT_1_PIN, CLEAR))
+
+//*****************************************************************************
+//    Interrupt Priorities
+//*****************************************************************************
+#define I2C_INTERRUPT_PRIORITY               (0x00)
+#define GPIO_INTERRUPT_PRIORITY__SENSOR_PIN  (0x01)
+#define TIMER_INTERRUPT_PRIORITY__FOREGROUND (0x01)
+
 #endif /* QUADROTORFIRMWARE_H_ */

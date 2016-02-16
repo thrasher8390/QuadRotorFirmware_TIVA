@@ -29,20 +29,15 @@ int main(void)
    //
    FPULazyStackingEnable();
 
-   //
-   // Set the clocking to run directly from the crystal.
-   //
-   //EFFECTS SYSTEM_CLOCK_FREQUENCY
-   //SYSCTL_PWMDIV_1 initializes PWM
-   SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
-
+   //PLL Runs at 400MHz
+   SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ); // We are running at 160MHz
    //
    // Set up and enable the SysTick timer.  It will be used as a reference
    // for delay loops in the interrupt handlers.  The SysTick timer period
    // will be set up for one second.
    //
-   SysTickPeriodSet(SysCtlClockGet());
-   SysTickEnable();
+   //SysTickPeriodSet(SysCtlClockGet());
+   //SysTickEnable();
 
    GPIO_Initialize();
    HC05_Initialize();
@@ -58,6 +53,6 @@ int main(void)
    //Get ready to read ADXL345
    while(1)
    {
-     Protocol__ReceivedCommand(HC05__GetCommand());
+      Protocol__ReceivedCommand(HC05__GetCommand());
    }
 }
