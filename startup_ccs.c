@@ -56,7 +56,8 @@ extern uint32_t __STACK_TOP;
 // External declarations for the interrupt handlers used by the application.
 //
 //*****************************************************************************
-extern void IntGPIOd(void);
+extern void IntGPIOd(void);//GPIO.c
+extern void I2C_Interrupt0(void); //I2C.c
 extern void HC05__RxInterrupt(void);
 extern void Timers_Timer0Interrupt(void);    //Timers.c
 extern void Timers_Timer1Interrupt(void);    //Timers.c
@@ -96,7 +97,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // UART0 Rx and Tx
     IntDefaultHandler,                      // UART1 Rx and Tx
     IntDefaultHandler,                      // SSI0 Rx and Tx
-    IntDefaultHandler,                      // I2C0 Master and Slave
+    I2C_Interrupt0,                      // I2C0 Master and Slave
     IntDefaultHandler,                      // PWM Fault
     IntDefaultHandler,                      // PWM Generator 0
     IntDefaultHandler,                      // PWM Generator 1
