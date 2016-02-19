@@ -49,8 +49,8 @@ typedef enum
 //*****************************************************************************
 #define SYSTEM_CLOCK_FREQUENCY_HZ   (50000000)
 #define SYSTEM_CLOCK_FREQUENCY_MHZ  (SYSTEM_CLOCK_FREQUENCY_HZ/1000000)
-#define PLL_FREQUENCY_HZ            (200000000)
-#define PLL_FREQUENCY_MHZ           (200)
+#define PLL_FREQUENCY_HZ            (400000000)
+#define PLL_FREQUENCY_MHZ           (400)
 #define CLEAR	(0)
 #define SET		(1)
 

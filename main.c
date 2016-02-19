@@ -15,8 +15,8 @@
 #include "Sensors.h"
 #include "HC05.h"
 #include "Protocol.h"
-#include "Servo.h"
-#include "PWM.h"
+#include "MotorControl.h"
+#include "Scheduler.h"
 //*****************************************************************************
 //		GLOBAL DATA VARIABLES
 //*****************************************************************************
@@ -30,22 +30,19 @@ int main(void)
    FPULazyStackingEnable();
 
    //PLL Runs at 400MHz
-   SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ); // We are running at 160MHz
-   //
-   // Set up and enable the SysTick timer.  It will be used as a reference
-   // for delay loops in the interrupt handlers.  The SysTick timer period
-   // will be set up for one second.
-   //
-   //SysTickPeriodSet(SysCtlClockGet());
-   //SysTickEnable();
+   SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ); // We are running at 50MHz
+
+   //Init the scheduler routine
+   Scheduler__Initialize();
+   Timers_Initialize();
 
    GPIO_Initialize();
    HC05_Initialize();
-   Sensors_Initialize();
-   Timers_Initialize();
-   /* Init the servo control module */
-   ServoModule_Init();
 
+   MotorControl__Initialize();
+
+   //This needs to be called last since we instantly start running the accelerometer.
+   Sensors_Initialize();
    IntMasterEnable();
 
    //////End of Init ADXL345

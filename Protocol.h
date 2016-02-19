@@ -21,6 +21,7 @@
 #define COMMAND_OFF     (0x09)
 #define COMMAND_ON      (0x0A)
 #define COMMAND_DELAY   (0x0B)
+#define COMMAND_LEVEL   (0x0C)
 
 //Global Functions
 extern void Protocol__ReceivedCommand(BLUETOOTH_CMD nextCommand);

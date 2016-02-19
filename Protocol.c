@@ -27,6 +27,9 @@ void Protocol__ReceivedCommand(BLUETOOTH_CMD nextCommand)
       case COMMAND_UP:
       {
          ServoModule_SetServoPower(1,ServoModule_GetServoPower(1) + 10);
+         ServoModule_SetServoPower(2,ServoModule_GetServoPower(2) + 10);
+         ServoModule_SetServoPower(3,ServoModule_GetServoPower(3) + 10);
+         ServoModule_SetServoPower(0,ServoModule_GetServoPower(0) + 10);
          LED_ChangeColor(LED_RED_GREEN);
          break;
       }
@@ -47,10 +50,24 @@ void Protocol__ReceivedCommand(BLUETOOTH_CMD nextCommand)
       }
       case COMMAND_OFF:
       {
+         ServoModule_SetServoPower(0,0);
+         ServoModule_SetServoPower(1,0);
+         ServoModule_SetServoPower(2,0);
+         ServoModule_SetServoPower(3,0);
+
          break;
       }
       case COMMAND_ON:
       {
+         break;
+      }
+      case COMMAND_LEVEL:
+      {
+         uint32_t level = (uint32_t)(((uint16_t)nextCommand.DATA[0] << 8) | nextCommand.DATA[1]);
+         ServoModule_SetServoPower(0,level);
+         ServoModule_SetServoPower(1,level);
+         ServoModule_SetServoPower(2,level);
+         ServoModule_SetServoPower(3,level);
          break;
       }
       default:
