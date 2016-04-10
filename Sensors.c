@@ -31,9 +31,19 @@ void Sensors_Run()
 	//Gyro_Read();
 }
 
-void Sensors__InterruptIRQ()
+void Sensors__InterruptIRQ(UINT32 intStatus)
 {
-   ADXL345__InterruptIRQ();
+   if((intStatus & ADXL_INT_PIN) == ADXL_INT_PIN)
+   {
+      ADXL345__InterruptIRQ();
+   }
+   else if((intStatus & GYRO_INT_PIN) == GYRO_INT_PIN)
+   {
+   }
+   else
+   {
+      //TODO catch error
+   }
 }
 //*****************************************************************************
 //		Local Functions

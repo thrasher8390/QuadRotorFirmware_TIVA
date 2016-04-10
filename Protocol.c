@@ -64,6 +64,7 @@ void Protocol__ReceivedCommand(BLUETOOTH_CMD nextCommand)
       case COMMAND_LEVEL:
       {
          uint32_t level = (uint32_t)(((uint16_t)nextCommand.DATA[0] << 8) | nextCommand.DATA[1]);
+         level = (level * MAX_POWER_US)/0xFFFF;
          ServoModule_SetServoPower(0,level);
          ServoModule_SetServoPower(1,level);
          ServoModule_SetServoPower(2,level);

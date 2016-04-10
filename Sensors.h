@@ -16,11 +16,15 @@
 //*****************************************************************************
 //		Defines
 //*****************************************************************************
-
+//Interrupt Pin For SENSORS
+#define SENSORS_INT_PORT   (GPIO_PORTD_BASE)
+#define ADXL_INT_PIN       (GPIO_PIN_6)
+#define GYRO_INT_PIN       (0)
+#define SENSORS_INT_PINS   (ADXL_INT_PIN | GYRO_INT_PIN)
 //*****************************************************************************
 //		Global Functions
 //*****************************************************************************
 extern void Sensors_Initialize();
 extern void Sensors_Run();
-extern void Sensors__InterruptIRQ();
+extern void Sensors__InterruptIRQ(UINT32);
 #endif /* SENSORS_H_ */

@@ -59,10 +59,6 @@ typedef uint32_t UINT32 ;
 typedef uint16_t UINT16 ;
 typedef uint8_t UINT8 ;
 
-//Interrupt Pin For SENSORS
-#define SENSORS_INT_PORT   (GPIO_PORTD_BASE)
-#define SENSORS_INT_PIN    (GPIO_PIN_6)
-
 //TESTPOINTS
 
 #define TESTPOINT_0_PORT      (GPIO_PORTD_BASE)
