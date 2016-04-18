@@ -22,6 +22,7 @@ void Protocol__ReceivedCommand(BLUETOOTH_CMD nextCommand)
          Command0__Process(nextCommand);
          break;
       }
+      case INVALID_CMD:
       default:
       {
          break;

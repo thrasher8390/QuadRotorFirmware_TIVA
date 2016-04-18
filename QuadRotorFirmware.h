@@ -76,6 +76,6 @@ typedef uint8_t UINT8 ;
 //*****************************************************************************
 #define I2C_INTERRUPT_PRIORITY               (0x00)
 #define GPIO_INTERRUPT_PRIORITY__SENSOR_PIN  (0x01)
-#define TIMER_INTERRUPT_PRIORITY__FOREGROUND (0x01)
+#define TIMER_INTERRUPT_PRIORITY__FOREGROUND (0x02)
 
 #endif /* QUADROTORFIRMWARE_H_ */

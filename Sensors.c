@@ -21,14 +21,24 @@
 //*****************************************************************************
 void Sensors_Initialize()
 {
+   //Lets initialize the I2C module that will be used for the ADXL345
+   //Init I2C Module 0
+   I2C_Init0();
+
 	ADXL345_Init();
-	//Gyro_Init();
+	Gyro_Init();
+
+	//This is needed to clear out the interrupt.
+   ADXL345_Read();
+   Gyro_Read();
 }
 
 void Sensors_Run()
 {
-	ADXL345_Read();
-	//Gyro_Read();
+   //Get Accel and Gyrow data and call the filter function.
+	//ADXL345_GetData();
+	//Gyro_GetData();
+   //Filter(accelData, gyroData);
 }
 
 void Sensors__InterruptIRQ(UINT32 intStatus)
@@ -37,12 +47,9 @@ void Sensors__InterruptIRQ(UINT32 intStatus)
    {
       ADXL345__InterruptIRQ();
    }
-   else if((intStatus & GYRO_INT_PIN) == GYRO_INT_PIN)
+   if((intStatus & GYRO_INT_PIN) == GYRO_INT_PIN)
    {
-   }
-   else
-   {
-      //TODO catch error
+      Gyro__InterruptIRQ();
    }
 }
 //*****************************************************************************
