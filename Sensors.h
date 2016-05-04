@@ -13,18 +13,28 @@
 #include "Project.h"
 #include "ADXL345.h"
 #include "Gyroscope_L3GD20H.h"
+
+//*****************************************************************************
+//    Data Types
+//*****************************************************************************
+typedef enum
+{
+   INTERRUPT_GYRO,
+   INTERRUPT_ACCEL
+}SENSOR_INTERRUPT;
 //*****************************************************************************
 //		Defines
 //*****************************************************************************
 //Interrupt Pin For SENSORS
-#define SENSORS_INT_PORT   (GPIO_PORTD_BASE)
+#define ADXL_INT_PORT      (GPIO_PORTD_BASE)
 #define ADXL_INT_PIN       (GPIO_PIN_6)
-#define GYRO_INT_PIN       (GPIO_PIN_0)
-#define SENSORS_INT_PINS   (ADXL_INT_PIN | GYRO_INT_PIN)
+
+#define GYRO_INT_PORT      (GPIO_PORTD_BASE)
+#define GYRO_INT_PIN       (GPIO_PIN_2)
 //*****************************************************************************
 //		Global Functions
 //*****************************************************************************
-extern void Sensors_Initialize();
-extern void Sensors_Run();
-extern void Sensors__InterruptIRQ(UINT32);
+void Sensors_Initialize();
+void Sensors_Run();
+void Sensors__InterruptIRQ(SENSOR_INTERRUPT);
 #endif /* SENSORS_H_ */

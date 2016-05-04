@@ -8,7 +8,9 @@
 //		Includes
 //*****************************************************************************
 #include "Sensors.h"
+#include "SoftwareWatchdog.h"
 #include "LED.h"
+#include "I2C.h"
 //*****************************************************************************
 //		Defines
 //*****************************************************************************
@@ -16,6 +18,8 @@
 //*****************************************************************************
 //		Variables
 //*****************************************************************************
+SWWATCH_TAG_TYPE AccelSWWatchTag;
+SWWATCH_TAG_TYPE GyroSWWatchTag;
 //*****************************************************************************
 //		Global Functions
 //*****************************************************************************
@@ -25,12 +29,16 @@ void Sensors_Initialize()
    //Init I2C Module 0
    I2C_Init0();
 
-	ADXL345_Init();
+   ADXL345_Init();
 	Gyro_Init();
 
-	//This is needed to clear out the interrupt.
+   //This is needed to clear out the interrupt.
    ADXL345_Read();
    Gyro_Read();
+
+   //Subscrib to SWWatchDog
+   AccelSWWatchTag = SoftwareWatchdog__GetTag(4, ADXL345__InterruptIRQ);
+   GyroSWWatchTag = SoftwareWatchdog__GetTag(4, Gyro__InterruptIRQ);
 }
 
 void Sensors_Run()
@@ -41,15 +49,17 @@ void Sensors_Run()
    //Filter(accelData, gyroData);
 }
 
-void Sensors__InterruptIRQ(UINT32 intStatus)
+void Sensors__InterruptIRQ(SENSOR_INTERRUPT intStatus)
 {
-   if((intStatus & ADXL_INT_PIN) == ADXL_INT_PIN)
+   if(intStatus == INTERRUPT_ACCEL)
    {
       ADXL345__InterruptIRQ();
+      SoftwareWatchdog__Update(AccelSWWatchTag);
    }
-   if((intStatus & GYRO_INT_PIN) == GYRO_INT_PIN)
+   if(intStatus == INTERRUPT_GYRO)
    {
       Gyro__InterruptIRQ();
+      SoftwareWatchdog__Update(GyroSWWatchTag);
    }
 }
 //*****************************************************************************

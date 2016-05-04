@@ -22,6 +22,7 @@
 //*****************************************************************************
 int main(void)
 {
+   IntMasterDisable();
    //
    // Enable lazy stacking for interrupt handlers.  This allows floating-point
    // instructions to be used within interrupt handlers, but at the expense of
@@ -39,14 +40,11 @@ int main(void)
    GPIO_Initialize();
    HC05_Initialize();
 
-   MotorControl__Initialize();
-
    //This needs to be called last since we instantly start running the accelerometer.
    Sensors_Initialize();
+
    IntMasterEnable();
-
-   //////End of Init ADXL345
-
+   MotorControl__Initialize();
    //Get ready to read ADXL345
    while(1)
    {
